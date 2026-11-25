@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feliz 3 anos ♥</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@1,500&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+/*
+VOICE: terno, noturno, íntimo — uma carta de amor que se abre.
+IDEA: um varal de polaroids pendurado em volta de um quarto à luz de velas.
+PICTURE: coração vermelho no centro que se abre como duas portas e revela a foto do casal.
+COLOUR: vinho profundo, rosa quente de acento, papel das polaroids em branco quente.
+TYPE: Great Vibes no título, Cormorant itálico na frase, Caveat nas legendas.
+*/
+:root{--bg:#1d0710;--wine:#3a0d1d;--rose:#ff4f7e;--rose2:#ff8fab;--paper:#fbf7f1;--ink:#fff3f5;--twine:#d9bf9c}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:
+  radial-gradient(60% 50% at 50% 48%,#5a1630 0%,transparent 70%),
+  radial-gradient(40% 30% at 15% 20%,#3d0f22 0%,transparent 70%),
+  radial-gradient(40% 30% at 85% 80%,#3d0f22 0%,transparent 70%),var(--bg);
+  color:var(--ink);font:16px/1.5 "Cormorant Garamond",Georgia,serif;overflow:hidden;
+  -webkit-tap-highlight-color:transparent;user-select:none}
+#stage{position:fixed;inset:0}
+#varal{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#varal path{fill:none;stroke:var(--twine);stroke-width:1.6;filter:drop-shadow(0 2px 2px rgba(0,0,0,.5))}
+#pols{position:absolute;inset:0;pointer-events:none}
+.pol{position:absolute;left:0;top:0;background:var(--paper);padding:7px 7px 0;border-radius:2px;
+  box-shadow:0 10px 18px rgba(0,0,0,.45),0 2px 4px rgba(0,0,0,.3);transform-origin:50% 0;will-change:transform}
+.pol img{display:block;width:100%;aspect-ratio:1;object-fit:cover;object-position:50% 35%;background:#ddd}
+.pol span{display:block;height:24px;font:500 15px/24px Caveat,cursive;color:#5a2a35;text-align:center;white-space:nowrap;overflow:hidden}
+.pol::before{content:"";position:absolute;left:50%;top:-9px;width:9px;height:20px;margin-left:-4.5px;border-radius:2px;
+  background:linear-gradient(90deg,#b98a5a,#e2bf8e 50%,#a87a4c);box-shadow:0 1px 2px rgba(0,0,0,.4)}
+
+#centro{position:absolute;left:50%;top:var(--cy,50%);transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:clamp(8px,2vh,20px);text-align:center;width:min(90vw,560px)}
+.heart{position:relative;width:var(--S);height:calc(var(--S)*.92);cursor:pointer;perspective:900px;border:0;background:none;padding:0}
+.heart:focus-visible{outline:2px dashed var(--rose2);outline-offset:10px;border-radius:20px}
+.heart .glow{position:absolute;inset:-18%;background:radial-gradient(closest-side,rgba(255,79,126,.55),transparent);filter:blur(10px);animation:glow 2.4s ease-in-out infinite}
+.mask{-webkit-mask:var(--hm) center/100% 100% no-repeat;mask:var(--hm) center/100% 100% no-repeat}
+.heart .foto{position:absolute;inset:0;background:#7a2240 50% 40%/cover no-repeat;transform:scale(.6);opacity:0;transition:transform 1.1s cubic-bezier(.2,1.4,.4,1) .25s,opacity .6s .25s}
+.heart .borda{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .8s .6s}
+.door{position:absolute;inset:0;background:radial-gradient(70% 60% at 35% 30%,#ff7a9b 0%,#e8204f 45%,#9e0f33 100%);transition:transform 1s cubic-bezier(.6,0,.3,1),opacity .8s .4s}
+.door.l{clip-path:inset(0 50% 0 0);transform-origin:0 50%}
+.door.r{clip-path:inset(0 0 0 50%);transform-origin:100% 50%}
+.door::after{content:"";position:absolute;left:18%;top:14%;width:22%;height:16%;border-radius:50%;background:rgba(255,255,255,.35);filter:blur(4px);transform:rotate(-30deg)}
+.closed .heart{animation:beat 1.4s ease-in-out infinite}
+.open .door.l{transform:rotateY(-115deg);opacity:0}
+.open .door.r{transform:rotateY(115deg);opacity:0}
+.open .heart .foto{transform:scale(1);opacity:1}
+.open .heart .borda{opacity:1}
+.dica{font:500 clamp(20px,2.6vw,26px)/1 Caveat,cursive;color:var(--rose2);transition:opacity .4s}
+.open .dica{opacity:0;height:0;overflow:hidden}
+h1{font:400 clamp(34px,min(7vw,8vh),80px)/1.05 "Great Vibes",cursive;color:#fff;text-shadow:0 0 24px rgba(255,79,126,.6);text-wrap:balance}
+.amo{font:500 italic clamp(20px,min(3.2vw,4vh),34px)/1.1 "Cormorant Garamond",serif;color:var(--rose2)}
+.txt{opacity:0;transform:translateY(14px);transition:opacity 1.2s 1.2s,transform 1.2s 1.2s}
+.amo.txt{transition-delay:1.9s}
+.open .txt{opacity:1;transform:none}
+
+#minis{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.mini{position:absolute;left:0;top:0;background:#c33 50% 35%/cover no-repeat;will-change:transform,opacity;filter:drop-shadow(0 3px 4px rgba(0,0,0,.4))}
+
+#som{position:fixed;right:14px;bottom:14px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,143,171,.5);
+  background:rgba(58,13,29,.75);color:var(--rose2);font:22px/1 Georgia,serif;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .5s;z-index:5}
+#som.on{opacity:1;pointer-events:auto}
+#som:focus-visible{outline:2px solid var(--rose2);outline-offset:3px}
+#ytlink{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);font:500 18px Caveat,cursive;color:var(--rose2);display:none;z-index:5}
+#yt{position:fixed;left:-9999px;top:0;width:200px;height:200px}
+
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.08)}30%{transform:scale(.98)}45%{transform:scale(1.05)}}
+@keyframes glow{50%{opacity:.6;transform:scale(1.06)}}
+@media (prefers-reduced-motion:reduce){.closed .heart,.heart .glow{animation:none}}
+</style>
+</head>
+<body>
+<div id="stage" class="closed">
+  <svg id="varal" aria-hidden="true"><path id="corda"/></svg>
+  <div id="pols"></div>
+  <div id="centro">
+    <button class="heart" id="heart" aria-label="Abrir o coração">
+      <div class="glow"></div>
+      <div class="foto mask" id="fotoCentro"></div>
+      <svg class="borda" viewBox="0 0 100 92" preserveAspectRatio="none"><path d="M50 88C20 66 3 50 3 28 3 13 15 3 28 3c9 0 17 5 22 13C55 8 63 3 72 3c13 0 25 10 25 25 0 22-17 38-47 60Z" fill="none" stroke="#ff8fab" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>
+      <div class="door l mask"></div>
+      <div class="door r mask"></div>
+    </button>
+    <p class="dica">toque no coração</p>
+    <h1 class="txt">Feliz 3 anos juntos</h1>
+    <p class="amo txt">Te amo muito ♥</p>
+  </div>
+  <div id="minis"></div>
+</div>
+<button id="som" aria-label="Pausar música">♪</button>
+<a id="ytlink" href="https://youtu.be/tNDWJ_KDkAc" target="_blank" rel="noopener">ouvir "Last Kiss" ♪</a>
+<div id="yt"></div>
+
+<script>
+{
+/* ====== CONFIGURAÇÃO — troque aqui ====== */
+const FOTOS = Array.from({length:20},(_,i)=>`fotos/${String(i+1).padStart(2,'0')}.jpg`);
+const LEGENDAS = [];         // opcional, mesma ordem das fotos: ['Praia 2023', ...]
+const FOTO_CORACAO = 'fotos/01.jpg';
+const YT_ID = 'tNDWJ_KDkAc'; // Pearl Jam - Last Kiss (Official Audio)
+/* ======================================== */
+
+const HEART = "M50 88C20 66 3 50 3 28 3 13 15 3 28 3c9 0 17 5 22 13C55 8 63 3 72 3c13 0 25 10 25 25 0 22-17 38-47 60Z";
+document.documentElement.style.setProperty('--hm',`url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 92' preserveAspectRatio='none'><path d='${HEART}'/></svg>`)}")`);
+
+/* fotos provisórias enquanto as de verdade não chegam */
+function placeholder(i){
+  const c=document.createElement('canvas');c.width=c.height=360;const g=c.getContext('2d');
+  const h=[340,350,10,20,330,355][i%6],gr=g.createLinearGradient(0,0,360,360);
+  gr.addColorStop(0,`hsl(${h} 70% 72%)`);gr.addColorStop(1,`hsl(${(h+25)%360} 60% 45%)`);
+  g.fillStyle=gr;g.fillRect(0,0,360,360);
+  g.fillStyle='rgba(255,255,255,.85)';g.save();g.translate(110,95);g.scale(1.4,1.4);g.fill(new Path2D(HEART));g.restore();
+  g.font='600 40px Caveat, cursive';g.textAlign='center';g.fillText('foto '+(i+1),180,330);
+  return c.toDataURL('image/jpeg',.85);
+}
+const fotos = FOTOS.length ? FOTOS : Array.from({length:14},(_,i)=>placeholder(i));
+const centro = FOTO_CORACAO || fotos[0];
+document.getElementById('fotoCentro').style.backgroundImage=`url("${centro}")`;
+
+/* ====== varal ====== */
+const stage=document.getElementById('stage'),corda=document.getElementById('corda'),polBox=document.getElementById('pols');
+let L={},pols=[];
+function layout(){
+  const w=innerWidth,h=innerHeight,W=Math.round(Math.max(70,Math.min(130,Math.min(w,h)*.13))),H=W+17;
+  const x0=W/2+10,y0=18,x1=w-W/2-10,y1=h-H-14,R=Math.min(48,(x1-x0)/4,(y1-y0)/4);
+  const sw=x1-x0-2*R,sh=y1-y0-2*R,arc=Math.PI*R/2;
+  const segs=[['l',x0+R,y0,1,0,sw],['a',x1-R,y0+R,-90,arc],['l',x1,y0+R,0,1,sh],['a',x1-R,y1-R,0,arc],
+              ['l',x1-R,y1,-1,0,sw],['a',x0+R,y1-R,90,arc],['l',x0,y1-R,0,-1,sh],['a',x0+R,y0+R,180,arc]];
+  const P=segs.reduce((s,g)=>s+(g[0]=='l'?g[5]:g[4]),0);
+  L={W,R,segs,P};
+  corda.setAttribute('d',`M${x0+R} ${y0}H${x1-R}A${R} ${R} 0 0 1 ${x1} ${y0+R}V${y1-R}A${R} ${R} 0 0 1 ${x1-R} ${y1}H${x0+R}A${R} ${R} 0 0 1 ${x0} ${y1-R}V${y0+R}A${R} ${R} 0 0 1 ${x0+R} ${y0}Z`);
+  const n=Math.max(6,Math.floor(P/(W*1.45)));
+  polBox.innerHTML=Array.from({length:n},(_,i)=>{const k=i%fotos.length;
+    return `<div class="pol" style="width:${W}px"><img alt="" src="${fotos[k]}"><span></span></div>`}).join('');
+  pols=[...polBox.children];
+  pols.forEach((p,i)=>{p.querySelector('span').textContent=LEGENDAS[i%fotos.length]||'♡'});
+  const top=y0+H+8,bot=y1-6,avail=bot-top;
+  const S=Math.max(120,Math.min(w*.56,avail*.52,400,(x1-x0-W)*.95));
+  const c=document.getElementById('centro');c.style.setProperty('--S',S+'px');c.style.setProperty('--cy',(top+bot)/2+'px');
+}
+function pointAt(s){
+  s=((s%L.P)+L.P)%L.P;
+  for(const g of L.segs){
+    const len=g[0]=='l'?g[5]:g[4];
+    if(s<=len){
+      if(g[0]=='l')return[g[1]+g[3]*s,g[2]+g[4]*s];
+      const a=(g[3]+s/L.R*180/Math.PI)*Math.PI/180;return[g[1]+L.R*Math.cos(a),g[2]+L.R*Math.sin(a)];
+    }
+    s-=len;
+  }
+  return[0,0];
+}
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const SPEED=reduce?8:32;
+
+/* ====== mini corações ====== */
+const minis=document.getElementById('minis');let parts=[];
+function burst(n){
+  const r=document.getElementById('heart').getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height*.45;
+  for(let i=0;i<n;i++){
+    const el=document.createElement('div'),sz=24+Math.random()*34;
+    el.className='mini mask';el.style.width=sz+'px';el.style.height=sz*.92+'px';
+    el.style.backgroundImage=`url("${fotos[Math.floor(Math.random()*fotos.length)]}")`;
+    minis.appendChild(el);
+    const a=Math.random()*Math.PI*2,v=(reduce?150:320)+Math.random()*480;
+    parts.push({el,x:cx-sz/2,y:cy-sz/2,vx:Math.cos(a)*v,vy:Math.sin(a)*v-260,r:Math.random()*60-30,vr:Math.random()*240-120,t:0,life:2.6+Math.random()*1.4});
+  }
+}
+
+/* ====== loop ====== */
+let last=performance.now(),T=0;
+function frame(now){
+  const dt=Math.min(.05,(now-last)/1000);last=now;T+=dt;
+  const gap=L.P/pols.length;
+  pols.forEach((p,i)=>{
+    const [x,y]=pointAt(i*gap+T*SPEED),sw=Math.sin(T*1.7+i*1.3)*(reduce?1:5);
+    p.style.transform=`translate(${x-L.W/2}px,${y-4}px) rotate(${sw}deg)`;
+  });
+  parts=parts.filter(q=>{
+    q.t+=dt;q.vy+=520*dt;q.vx*=.992;q.x+=q.vx*dt;q.y+=q.vy*dt;q.r+=q.vr*dt;
+    const o=q.t>q.life-.8?Math.max(0,(q.life-q.t)/.8):1;
+    q.el.style.transform=`translate(${q.x}px,${q.y}px) rotate(${q.r}deg) scale(${Math.min(1,q.t*4)})`;q.el.style.opacity=o;
+    if(q.t>=q.life){q.el.remove();return false}return true;
+  });
+  requestAnimationFrame(frame);
+}
+
+/* ====== música (YouTube) ====== */
+let player=null,ready=false,want=false,tocando=false;
+const som=document.getElementById('som'),ytlink=document.getElementById('ytlink');
+window.onYouTubeIframeAPIReady=()=>{
+  player=new YT.Player('yt',{videoId:YT_ID,playerVars:{autoplay:0,controls:0,playsinline:1,loop:1,playlist:YT_ID},
+    events:{onReady:()=>{ready=true;if(want)play()},
+            onStateChange:e=>{tocando=e.data===1;som.textContent=tocando?'♪':'▶';som.setAttribute('aria-label',tocando?'Pausar música':'Tocar música')},
+            onError:()=>{som.classList.remove('on');ytlink.style.display='block'}}});
+};
+const tag=document.createElement('script');tag.src='https://www.youtube.com/iframe_api';
+tag.onerror=()=>{ytlink.style.display='block'};document.head.appendChild(tag);
+function play(){try{player.setVolume(80);player.playVideo();som.classList.add('on')}catch(e){ytlink.style.display='block'}}
+som.addEventListener('click',()=>{if(!ready)return;tocando?player.pauseVideo():player.playVideo()});
+
+/* ====== abrir ====== */
+document.getElementById('heart').addEventListener('click',()=>{
+  if(stage.classList.contains('closed')){
+    stage.classList.replace('closed','open');
+    document.getElementById('heart').setAttribute('aria-label','Mais corações');
+    want=true;if(ready)play();
+    setTimeout(()=>burst(reduce?14:46),550);
+    setTimeout(()=>burst(reduce?0:22),1500);
+  }else burst(reduce?8:24);
+});
+
+addEventListener('resize',layout);
+layout();requestAnimationFrame(frame);
+}
+</script>
+</body>
+</html>
